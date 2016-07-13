@@ -29,14 +29,14 @@ describe(Train) do
    end
  end
 
-
   describe('#save') do
     it("saves a new train object in the database") do
       test_train = Train.new({:id => nil, :name => 'Thomas'})
       test_train.save()
-  binding.pry
-      expect(Train.all()).to(eq[test_train])
+      expect(Train.all()).to(eq([test_train]))
     end
   end
+
+  
 
 end
