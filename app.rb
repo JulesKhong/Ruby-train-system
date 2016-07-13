@@ -11,6 +11,11 @@ get('/') do
   erb(:index)
 end
 
+get('/train/:id') do
+  @train = Train.find(params.fetch('id').to_i())
+  erb(:train)
+end
+
 post('/train') do
   @name = params.fetch('name')
   train = Train.new({:name => @name})

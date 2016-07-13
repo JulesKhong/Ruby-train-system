@@ -37,6 +37,14 @@ describe(Train) do
     end
   end
 
-  
+  describe('.find') do
+    it('returns a train by an ID') do
+      test_train_one = Train.new({:id => nil, :name => "Thomas"})
+      test_train_one.save()
+      test_train_two = Train.new({:id => nil, :name => "Soul Train"})
+      test_train_two.save()
+      expect(Train.find(test_train_two.id())).to(eq(test_train_two))
+    end
+  end
 
 end

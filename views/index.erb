@@ -6,7 +6,7 @@
   <h3>Trains:</h3>
   <ul>
     <% @trains.each() do |train| %>
-      <li><%= train.name() %></li>
+      <li><a href="/train/<%= train.id()%>"> <%= train.name() %></a></li>
     <% end %>
   </ul>
 

@@ -20,4 +20,12 @@ describe('displaying a list of trains once they have been created', {:type => :f
   click_link('Return to dashboard')
   expect(page).to have_content('Thomas')
   end
+  # it('turns list item into a link that leads to a train page') do
+  #   visit('/')
+  #   fill_in('name', :with => 'Thomas')
+  #   click_button('Add train')
+  #   click_link('Return to dashboard')
+  #   click_link('Thomas')
+  #   expect(page).to have_content('Delete train')
+  # end
 end
