@@ -1,12 +1,11 @@
 
+<h3>Train details: <%= @train.name() %></h3>
+
+<h3>Cities:</h3>
+<a href="/">Return to dashboard</a>
 
 
-
-
-
-
-<h3>Delete a train</h3>
-<form class="form-control" action="/train/<%= @train.id() %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button type="submit">Delete train</button>
+<form class="form-group" action="/train/<%= @train.id() %>" method="post">
+  <input class="form-control" type="hidden" name="_method" value="delete">
+  <button class="btn btn-danger" type="submit">Delete <%= @train.name() %></button>
 </form>

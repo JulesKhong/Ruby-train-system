@@ -47,4 +47,13 @@ describe(Train) do
     end
   end
 
+  describe('#delete') do
+    it('deletes a train from the database') do
+      test_train = Train.new({:id => nil, :name => "Freight"})
+      test_train.save()
+      test_train.delete()
+      expect(Train.all()).to(eq([]))
+    end
+  end
+
 end

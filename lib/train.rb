@@ -38,4 +38,7 @@ class Train
     found_train
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM trains WHERE id=#{self.id()};")
+  end
 end

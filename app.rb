@@ -22,3 +22,10 @@ post('/train') do
   train.save()
   erb(:success)
 end
+
+delete('/train/:id') do
+  @train = Train.find(params.fetch('id').to_i())
+  @train.delete()
+  @trains = Train.all()
+  erb(:index)
+end
