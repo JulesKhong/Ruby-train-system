@@ -29,13 +29,16 @@ class City
   end
 
   define_singleton_method(:find) do |id|
-    found_city = nil
-    City.all().each() do |city|
-      if city.id().==(id)
-        found_city = city
-      end
-    end
-    found_city
+    # found_city = nil
+    # City.all().each() do |city|
+    #   if city.id().==(id)
+    #     found_city = city
+    #   end
+    # end
+    # found_city
+    result = DB.exec("SELECT * FROM cities WHERE id = #{id};")
+    name = result.first().fetch("name")
+    City.new({:id => id, :name => name})
   end
 
   define_method(:delete) do
