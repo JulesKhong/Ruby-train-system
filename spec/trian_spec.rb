@@ -1,17 +1,4 @@
-require('rspec')
-require('pry')
-require('train')
-require('pg')
-
-# DON'T FORGET TO REQUIRE CITY ONCE IT'S BUILT
-
-DB = PG.connect({:dbname => 'train_system_test'})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM trains *;")
-  end
-end
+require('helper_spec')
 
 describe(Train) do
 
