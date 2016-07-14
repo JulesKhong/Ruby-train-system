@@ -20,23 +20,15 @@
     </p>
   <% end %>
   <hr>
+</div>
 
-  <h3>Add a train</h3>
-  <form class="form-group" action="/train" method="post">
-    <label for="name">Train name</label>
-    <input class="form-control" type="text" name="name">
-    <button class="btn btn-primary" type="submit">Add train</button>
-  </form>
-
-  <hr>
-  </div>
   <div class="col-md-3 col-md-offset-2">
     <h3>Cities:</h3>
 
     <% if @cities.any?() %>
     <ul>
       <% @cities.each() do |city| %>
-        <li><%= city.name() %></li>
+        <li> <a href="/city/<%= city.id()%>"><%= city.name() %></a> </li>
       <% end %>
     </ul>
 
@@ -46,7 +38,23 @@
     </p>
     <% end %>
     <hr>
+  </div>
+</div>
 
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <h3>Add a train</h3>
+      <form class="form-group" action="/train" method="post">
+        <label for="name">Train name</label>
+        <input class="form-control" type="text" name="name">
+        <button class="btn btn-primary" type="submit">Add train</button>
+      </form>
+
+      <hr>
+    </div>
+
+
+  <div class="col-md-3 col-md-offset-2">
     <h3>Add a City</h3>
     <form class="form-group" action="/city_success" method="post">
       <label for="city-name">City name</label>
@@ -55,7 +63,48 @@
     </form>
   </div>
 </div>
+
+
 <hr>
 <h1>Zoom Track</h1>
 <h4>User dashboard</h4>
 <hr>
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
+    <h3>See the Train Routes</h3>
+
+    <% if @trains.any?() %>
+      <h3>Trains:</h3>
+      <ul>
+        <% @trains.each() do |train| %>
+          <li><a href="/train_stops/<%= train.id()%>"> <%= train.name() %></a></li>
+        <% end %>
+      </ul>
+
+    <% else %>
+      <p>
+        There are no trains yet!
+      </p>
+    <% end %>
+    <hr>
+</div>
+
+  <div class="col-md-3 col-md-offset-2">
+    <h3>Find Trains by City</h3>
+
+    <% if @cities.any?() %>
+    <ul>
+      <% @cities.each() do |city| %>
+        <li><a href="/city_stops/<%= city.id()%>"><%= city.name()%></a></li>
+      <% end %>
+    </ul>
+
+    <% else %>
+    <p>
+      There are no cities added.
+    </p>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<h3>Trains in: <%= @city.name() %></h3>
+<hr>
+
+<% if @city.trains().any?() %>
+<h3>Trains</h3>
+
+<ul>
+  <% @city.trains().each() do |train| %>
+  <li><%= train.name() %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no trains for this city.</p>
+<% end %>
+
+<hr>
+
+<a href="/">Return to dashboard</a>

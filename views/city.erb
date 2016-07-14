@@ -1,0 +1,45 @@
+
+<h3>City details: <%= @city.name() %></h3>
+<hr>
+
+<% if @city.trains().any?() %>
+<h3>Trains</h3>
+
+<ul>
+  <% @city.trains().each() do |train| %>
+  <li><%= train.name() %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no trains for this city.</p>
+<% end %>
+
+<hr>
+
+<h3>Trains:</h3>
+<% if @trains.any?() %>
+<form action='/city/<%= @city.id %>' method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <% @trains.each() do |train|%>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="train_ids[]" value="<%= train.id()%>"><%= train.name()%>
+    </label>
+  </div>
+  <% end %>
+
+  <button type="submit">Add train</button>
+</form>
+<% end %>
+
+<hr>
+
+<a href="/">Return to dashboard</a>
+
+<hr>
+
+<form class="form-group" action="/city/<%= @city.id() %>" method="post">
+  <input class="form-control" type="hidden" name="_method" value="delete">
+  <button class="btn btn-danger" type="submit">Delete <%= @city.name() %></button>
+</form>
