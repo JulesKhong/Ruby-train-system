@@ -10,3 +10,8 @@ button {
 input {
   margin-bottom: 10px;
 }
+
+.jumbotron {
+  background-image: url(../img/tracks.jpg);
+  height: 300px;
+}
