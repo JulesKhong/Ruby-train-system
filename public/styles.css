@@ -2,9 +2,11 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-/*body {
-  padding-top: 70px;
-}*/
-/*.main-nav {
-  display: inline;
-}*/
+
+button {
+  margin: 10px;
+}
+
+input {
+  margin-bottom: 10px;
+}

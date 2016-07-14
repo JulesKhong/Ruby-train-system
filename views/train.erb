@@ -1,32 +1,51 @@
 
 <h3>Train details: <%= @train.name() %></h3>
-
-<h3>Cities:</h3>
-
-<% if @cities.any?() %>
-<h3>Stops</h3>
-<ul>
-  <% @cities.each() do |city| %>
-    <li><%= city.name() %></li>
-  <% end %>
-</ul>
-
-<% else %>
-<p>
-  There are no cities yet!
-</p>
-<% end %>
 <hr>
 
-<h3>Add a Stop</h3>
+<% if @train.cities().any?() %>
+<h3>Stops</h3>
+
+<ul>
+  <% @train.cities().each() do |city| %>
+  <li><%= city.name() %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no cities for this train.</p>
+<% end %>
+
+<hr>
+
+<h3>Cities:</h3>
+<% if @cities.any?() %>
+<form action='/train/<%= @train.id %>' method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <% @cities.each() do |city|%>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="city_ids[]" value="<%= city.id()%>"><%= city.name()%>
+    </label>
+  </div>
+  <% end %>
+
+  <button type="submit">Add cities</button>
+</form>
+<% end %>
+
+<hr>
+
+
+<!-- <h3>Add a Stop</h3>
 <form class="form-group" action="/train/<%= @train.id() %>" method="post">
   <label for="city-name">City name</label>
   <input type="text" name="city-name">
   <button type="submit">Add Stop</button>
-</form>
+</form> -->
 
 <a href="/">Return to dashboard</a>
 
+<hr>
 
 <form class="form-group" action="/train/<%= @train.id() %>" method="post">
   <input class="form-control" type="hidden" name="_method" value="delete">

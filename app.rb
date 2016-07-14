@@ -33,11 +33,30 @@ delete('/train/:id') do
   @cities = City.all()
   erb(:index)
 end
-#
-post('/train/:id') do
+
+post('/city_success') do
   @city = params.fetch('city-name')
   city = City.new({:name => @city})
   city.save()
+  @cities = City.all()
+  @trains = Train.all()
+  erb(:city_success)
+end
+
+# post('/train/:id') do
+#   @city = params.fetch('city-name')
+#   city = City.new({:name => @city})
+#   city.save()
+#   @cities = City.all()
+#   @trains = Train.all()
+#   erb(:city_success)
+# end
+
+patch('/train/:id') do
+  train_id = params.fetch('id').to_i()
+  @train = Train.find(train_id)
+  city_ids = params.fetch("city_ids")
+  @train.update({:city_ids => city_ids})
   @cities = City.all()
   @trains = Train.all()
   erb(:index)

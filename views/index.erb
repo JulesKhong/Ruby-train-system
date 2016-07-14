@@ -1,13 +1,10 @@
-
   <h1>Zoom Track</h1>
   <h4>Operator dashboard</h4>
   <hr>
 
 <div class="row">
 
-
   <div class="col-md-3 col-md-offset-1">
-
 
   <% if @trains.any?() %>
     <h3>Trains:</h3>
@@ -27,17 +24,16 @@
   <h3>Add a train</h3>
   <form class="form-group" action="/train" method="post">
     <label for="name">Train name</label>
-    <input type="text" name="name">
-    <button type="submit">Add train</button>
+    <input class="form-control" type="text" name="name">
+    <button class="btn btn-primary" type="submit">Add train</button>
   </form>
 
   <hr>
   </div>
   <div class="col-md-3 col-md-offset-2">
-    <h3>Cities</h3>
+    <h3>Cities:</h3>
 
     <% if @cities.any?() %>
-    <h3>Stops</h3>
     <ul>
       <% @cities.each() do |city| %>
         <li><%= city.name() %></li>
@@ -46,10 +42,20 @@
 
     <% else %>
     <p>
-      There are no cities yet!
+      There are no cities added.
     </p>
     <% end %>
     <hr>
 
+    <h3>Add a City</h3>
+    <form class="form-group" action="/city_success" method="post">
+      <label for="city-name">City name</label>
+      <input class="form-control" type="text" name="city-name">
+      <button class="btn btn-primary" type="submit">Add Stop</button>
+    </form>
   </div>
 </div>
+<hr>
+<h1>Zoom Track</h1>
+<h4>User dashboard</h4>
+<hr>
