@@ -51,16 +51,17 @@ class Train
   end
 
   define_singleton_method(:find) do |id|
-    result = DB.exec("SELECT * FROM trains WHERE id = #{id};")
-    name = result.first().fetch("name")
-    Train.new({:id => id, :name => name})
-    # found_train = nil
-    # Train.all().each() do |train|
-    #   if train.id().==(id)
-    #     found_train = train
-    #   end
-    # end
-    # found_train
+    # result = DB.exec("SELECT * FROM trains WHERE id = #{id};")
+    # name = result.first().fetch("name")
+    # (Train.new({:id => id, :name => name})).save
+
+    found_train = nil
+    Train.all().each() do |train|
+      if train.id().==(id)
+        found_train = train
+      end
+    end
+    found_train
   end
 
   define_method(:delete) do

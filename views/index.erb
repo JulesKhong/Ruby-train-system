@@ -1,28 +1,55 @@
-<h1>Zoom Track</h1>
-<h4>Operator dashboard</h4>
+
+  <h1>Zoom Track</h1>
+  <h4>Operator dashboard</h4>
+  <hr>
+
+<div class="row">
 
 
-<% if @trains.any?() %>
-  <h3>Trains:</h3>
-  <ul>
-    <% @trains.each() do |train| %>
-      <li><a href="/train/<%= train.id()%>"> <%= train.name() %></a></li>
+  <div class="col-md-3 col-md-offset-1">
+
+
+  <% if @trains.any?() %>
+    <h3>Trains:</h3>
+    <ul>
+      <% @trains.each() do |train| %>
+        <li><a href="/train/<%= train.id()%>"> <%= train.name() %></a></li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>
+      There are no trains yet!
+    </p>
+  <% end %>
+  <hr>
+
+  <h3>Add a train</h3>
+  <form class="form-group" action="/train" method="post">
+    <label for="name">Train name</label>
+    <input type="text" name="name">
+    <button type="submit">Add train</button>
+  </form>
+
+  <hr>
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+    <h3>Cities</h3>
+
+    <% if @cities.any?() %>
+    <h3>Stops</h3>
+    <ul>
+      <% @cities.each() do |city| %>
+        <li><%= city.name() %></li>
+      <% end %>
+    </ul>
+
+    <% else %>
+    <p>
+      There are no cities yet!
+    </p>
     <% end %>
-  </ul>
+    <hr>
 
-<% else %>
-  <p>
-    There are no trains yet!
-  </p>
-<% end %>
-
-<hr>
-
-<h3>Add a train</h3>
-<form class="form-group" action="/train" method="post">
-  <label for="name">Train name</label>
-  <input type="text" name="name">
-  <button type="submit">Add train</button>
-</form>
-
-<hr>
+  </div>
+</div>

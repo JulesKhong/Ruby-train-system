@@ -44,3 +44,17 @@ describe('allows user to delete a train they have added', {:type => :feature}) d
     expect(page).to have_no_content('Thomas')
   end
 end
+
+describe('adding a city', {:type => :feature}) do
+  it('adds a city to the list of cities') do
+    visit('/')
+    fill_in('name', :with => 'Thomas')
+    click_button('Add train')
+    click_link('Return to dashboard')
+    click_link('Thomas')
+    fill_in('City name', :with => "Tokyo")
+    click_button('Add Stop')
+    click_link('Thomas')
+    expect(page).to have_content('Tokyo')
+  end
+end
