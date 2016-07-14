@@ -28,14 +28,29 @@ class City
     self.name().==(another_city.name()).&(self.id().==(another_city.id()))
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name, @name)
+    @id = self.id()
+    DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{self.id()};")
+
+    attributes.fetch(:train_ids, []).each() do |train_id|
+      DB.exec("INSERT INTO stops (train_id, city_id) VALUES (#{train_id}, #{self.id()});")
+    end
+  end
+
+  define_method(:trains) do
+    stops = []
+    results = DB.exec("SELECT train_id FROM stops WHERE city_id = #{self.id()};")
+    results.each() do |result|
+      train_id = result.fetch("train_id").to_i()
+      train = DB.exec("SELECT * FROM trains WHERE id = #{train_id};")
+      name = train.first().fetch("name")
+      stops.push(Train.new({:id => train_id, :name => name}))
+    end
+    stops
+  end
+
   define_singleton_method(:find) do |id|
-    # found_city = nil
-    # City.all().each() do |city|
-    #   if city.id().==(id)
-    #     found_city = city
-    #   end
-    # end
-    # found_city
     result = DB.exec("SELECT * FROM cities WHERE id = #{id};")
     name = result.first().fetch("name")
     City.new({:id => id, :name => name})
